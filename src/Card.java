@@ -52,6 +52,29 @@ public class Card {
     }
 
 
+    //Check if a card object is valid or not
+
+    public boolean validCard() {
+        
+        for (int i = 0; i < Card.allRanks.length; i++) {
+
+            for (int j = 0; j < Card.allSuits.length; j++) {
+
+                if ((Card.allRanks[i].equals(this.rank)) && (Card.allSuits[j].equals(this.suit))) {
+
+                    return true;
+                
+                }
+            
+            }
+        
+        }
+
+        return false;
+    
+    }
+    
+
 
     //Comparison between two cards and return a card object
     public static Card greaterCard(Card card1, Card card2) {
@@ -65,6 +88,16 @@ public class Card {
         int card1SuitIndex = 0;
         int card2SuitIndex = 0;
         Card nullCard = null;
+
+        if (!(card1.validCard() && card2.validCard())) {
+
+            System.out.println("Invalid card input. Program terminated.");
+
+            System.exit(0);
+
+            return nullCard;
+
+        }
 
         for (int i = 0; i < allRanks.length; i++) {
 
@@ -128,18 +161,4 @@ public class Card {
 
     }
 
-
-    public static void main(String[] args) {
-
-        Card card1 = new Card("Heart", "5");
-        Card card2 = new Card("Spade", "3");
-        Card card3 = new Card("Club", "3");
-
-        System.out.println(card1.getCardRank());
-        System.out.println(card2.getCardSuit());
-        System.out.println(card3.getPokerCard());
-        System.out.println(greaterCard(card1, card2).getPokerCard());
-        System.out.println(greaterCard(card1, card2).getPokerCard());
-        System.out.println(greaterCard(card2, card3).getPokerCard());
-    }
 }
